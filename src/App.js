@@ -4,13 +4,7 @@ import ItemCard from "./components/ItemCard";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import items from "./data/items";
-import {
-  Grid,
-  Typography,
-  Box,
-  Drawer,
-  IconButton
-} from "@mui/material";
+import { Grid, Typography, Box, Drawer, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const App = () => {
@@ -47,7 +41,13 @@ const App = () => {
           type: "CARD",
           parameters: {
             allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-            allowedCardNetworks: ["VISA", "MASTERCARD", "AMEX", "DISCOVER", "JCB"],
+            allowedCardNetworks: [
+              "VISA",
+              "MASTERCARD",
+              "AMEX",
+              "DISCOVER",
+              "JCB",
+            ],
           },
           tokenizationSpecification: {
             type: "DIRECT",
@@ -71,7 +71,11 @@ const App = () => {
     };
 
     paymentsClient
-      .isReadyToPay({ apiVersion: 2, apiVersionMinor: 0, allowedPaymentMethods: paymentDataRequest.allowedPaymentMethods })
+      .isReadyToPay({
+        apiVersion: 2,
+        apiVersionMinor: 0,
+        allowedPaymentMethods: paymentDataRequest.allowedPaymentMethods,
+      })
       .then((response) => {
         if (response.result) {
           paymentsClient
@@ -79,7 +83,8 @@ const App = () => {
             .then((paymentData) => {
               console.log("Payment Successful:", paymentData);
               alert("Payment Successful!");
-              const token = paymentData.paymentMethodData.tokenizationData.token;
+              const token =
+                paymentData.paymentMethodData.tokenizationData.token;
               console.log("Payment Token:", token);
             })
             .catch((err) => {
@@ -133,7 +138,11 @@ const App = () => {
         onClose={() => setIsCartOpen(false)}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "400px",
+            width: {
+              xs: "90%", // Full width on extra small screens (e.g., mobile devices)
+              sm: "80%", // 80% width on small screens (e.g., tablets)
+              md: "400px", // Fixed width on medium and larger screens
+            },
             backgroundColor: "background.paper",
             marginTop: "64px", // Adjust for the header height
             height: "calc(100% - 64px)", // Prevent overlap with the header
@@ -167,10 +176,7 @@ const App = () => {
         </Box>
         <Box sx={{ padding: 2 }}>
           {cart.length > 0 && (
-            <Checkout
-              total={calculateTotal()}
-              onGooglePay={handleGooglePay}
-            />
+            <Checkout total={calculateTotal()} onGooglePay={handleGooglePay} />
           )}
         </Box>
       </Drawer>
