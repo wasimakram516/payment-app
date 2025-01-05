@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/payment-app/static/js/main.d881ebb2.js",
+    "index.html": "/payment-app/index.html",
+    "main.d881ebb2.js.map": "/payment-app/static/js/main.d881ebb2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d881ebb2.js"
+  ]
+}
