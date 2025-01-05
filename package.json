@@ -43,7 +43,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": ".",
+  "homepage": "https://wasimakram516.github.io/payment-app",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
